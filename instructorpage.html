@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instructor Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1616400619175-5beda3a17896?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 80px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group label {
+      margin-bottom: 5px;
+      display: block;
+      font-weight: bold;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .action-btn {
+      background: #28a745;
+      margin-right: 10px;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div>
+      <a href="#">Home</a>
+    </div>
+    <div>
+      <a href="#">My Courses</a>
+      <a href="#">Profile</a>
+      <a href="#">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Instructor Dashboard</h2>
+
+    <div class="form-group">
+      <label for="courseTitle">Course Title</label>
+      <input type="text" id="courseTitle" placeholder="e.g. Introduction to Web Development">
+    </div>
+
+    <div class="form-group">
+      <label for="courseDesc">Course Description</label>
+      <textarea id="courseDesc" rows="3" placeholder="Brief summary of the course..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="courseCategory">Category</label>
+      <select id="courseCategory">
+        <option value="">Select Category</option>
+        <option>Web Development</option>
+        <option>Data Science</option>
+        <option>Design</option>
+        <option>Marketing</option>
+        <option>Programming</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="courseDuration">Duration (in weeks)</label>
+      <input type="number" id="courseDuration" placeholder="e.g. 6">
+    </div>
+
+    <button onclick="addCourse()">Add Course</button>
+
+    <table id="courseTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Duration</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic course list -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function addCourse() {
+      const title = document.getElementById("courseTitle").value;
+      const desc = document.getElementById("courseDesc").value;
+      const category = document.getElementById("courseCategory").value;
+      const duration = document.getElementById("courseDuration").value;
+
+      if (!title || !desc || !category || !duration) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      const table = document.getElementById("courseTable").getElementsByTagName('tbody')[0];
+      const row = table.insertRow();
+      row.insertCell(0).innerText = title;
+      row.insertCell(1).innerText = category;
+      row.insertCell(2).innerText = `${duration} weeks`;
+
+      const actionCell = row.insertCell(3);
+      actionCell.innerHTML = `
+        <button class="action-btn" onclick="alert('Edit not implemented')">Edit</button>
+        <button class="delete-btn" onclick="this.closest('tr').remove()">Delete</button>
+      `;
+
+      // Reset fields
+      document.getElementById("courseTitle").value = '';
+      document.getElementById("courseDesc").value = '';
+      document.getElementById("courseCategory").value = '';
+      document.getElementById("courseDuration").value = '';
+    }
+  </script>
+
+</body>
+</html>

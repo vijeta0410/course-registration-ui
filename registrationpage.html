@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1616400619175-5beda3a17896?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      height: 100vh;
+    }
+
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .register-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      width: 320px;
+    }
+
+    .register-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .register-box input,
+    .register-box select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .register-box button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .register-box a {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div>
+      <a href="#">Home</a>
+    </div>
+    <div>
+      <a href="studentpage.html">Courses</a>
+      <a href="#">Offers</a>
+      <a href="loginpage.html">Your Courses</a>
+      <a href="loginpage.html">Login</a>
+    </div>
+  </div>
+
+  <div class="register-box">
+    <h2>Register</h2>
+    <input type="text" id="name" placeholder="Full Name" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+    <select id="role">
+      <option value="">Select Role</option>
+      <option value="student">Student</option>
+      <option value="instructor">Instructor</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button onclick="register()">Register</button>
+    <a href="#">Already have an account? Login</a>
+  </div>
+
+  <script>
+    function register() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const role = document.getElementById("role").value;
+
+  if (!name || !email || !password || !confirmPassword || !role) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  alert(`Registration successful!\nName: ${name}\nEmail: ${email}\nRole: ${role}`);
+
+  // Redirect based on role
+  if (role === "student") {
+    window.location.href = "studentpage.html";
+  } else if (role === "instructor") {
+    window.location.href = "instructorpage.html";
+  } else if (role === "admin") {
+    window.location.href = "admin.html";
+  }
+}
+
+  </script>
+
+</body>
+</html>

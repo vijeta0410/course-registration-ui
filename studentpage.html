@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Registration</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1616400619175-5beda3a17896?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-filter {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .search-filter input,
+    .search-filter select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 200px;
+    }
+
+    .course-list {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .course-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .course-card h3 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .course-card p {
+      margin: 10px 0;
+    }
+
+    .course-card button {
+      margin-top: auto;
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .course-card button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div>
+      <a href="#">Home</a>
+    </div>
+    <div>
+      <a href="#">Browse</a>
+      <a href="#">My Courses</a>
+      <a href="#">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Explore & Register for Courses</h2>
+
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search by course title..." onkeyup="filterCourses()" />
+      <select id="categoryFilter" onchange="filterCourses()">
+        <option value="">All Categories</option>
+        <option value="Web Development">Web Development</option>
+        <option value="Data Science">Data Science</option>
+        <option value="Design">Design</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
+
+    <div class="course-list" id="courseList">
+      <!-- Course Cards will appear here -->
+    </div>
+  </div>
+
+  <script>
+    const courses = [
+      {
+        title: "JavaScript for Beginners",
+        description: "Learn JavaScript from scratch. Build dynamic web applications.",
+        category: "Web Development",
+        duration: "6 weeks"
+      },
+      {
+        title: "Intro to Data Science",
+        description: "Data analysis, visualization and prediction with Python.",
+        category: "Data Science",
+        duration: "8 weeks"
+      },
+      {
+        title: "UX/UI Design Basics",
+        description: "Understand user experience and create beautiful interfaces.",
+        category: "Design",
+        duration: "4 weeks"
+      },
+      {
+        title: "Social Media Marketing",
+        description: "Learn strategies for social media campaigns and branding.",
+        category: "Marketing",
+        duration: "5 weeks"
+      }
+    ];
+
+    function renderCourses(filtered = courses) {
+      const list = document.getElementById("courseList");
+      list.innerHTML = "";
+
+      filtered.forEach(course => {
+        const card = document.createElement("div");
+        card.className = "course-card";
+        card.innerHTML = `
+          <h3>${course.title}</h3>
+          <p><strong>Category:</strong> ${course.category}</p>
+          <p><strong>Duration:</strong> ${course.duration}</p>
+          <p>${course.description}</p>
+          <button onclick="registerCourse('${course.title}')">Register</button>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function filterCourses() {
+      const searchVal = document.getElementById("searchInput").value.toLowerCase();
+      const categoryVal = document.getElementById("categoryFilter").value;
+
+      const filtered = courses.filter(course =>
+        (course.title.toLowerCase().includes(searchVal)) &&
+        (categoryVal === "" || course.category === categoryVal)
+      );
+
+      renderCourses(filtered);
+    }
+
+    function registerCourse(courseTitle) {
+      alert(`You have registered for: ${courseTitle}`);
+    }
+
+    renderCourses();
+  </script>
+
+</body>
+</html>

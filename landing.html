@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome | Course Registration System</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1616400619175-5beda3a17896?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      height: 100vh;
+      color: white;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 120px 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .hero .btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      margin: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero .btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #ddd;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div><strong>CourseReg</strong></div>
+    <div>
+      <a href="registrationpage.html">Register</a>
+      <a href="studentpage.html">Student</a>
+      <a href="instructorpage.html">Instructor</a>
+      <a href="admin.html">Admin</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>Welcome to CourseReg</h1>
+    <p>Effortlessly browse, register, and manage academic courses in one simple platform. Tailored for students, instructors, and admins alike.</p>
+    <div>
+      <a class="btn" href="registrationpage.html">Get Started</a>
+      <a class="btn" href="studentpage.html">Explore Courses</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 CourseReg System. All rights reserved.
+  </footer>
+
+</body>
+</html>
